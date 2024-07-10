@@ -96,7 +96,7 @@ class LabelEC(TransformerMixin):
 # COMMAND ----------
 
 # Load the pipeline
-loaded_pipeline = joblib.load('data_preprocessor_pipeline.pkl')
+loaded_pipeline = joblib.load('preprocess_pipeline/data_preprocessor_pipeline.pkl')
 
 X_serving_transformed = loaded_pipeline.transform(serving_df)
-np.save('X_serving_transformed.npy', X_serving_transformed)
+np.save('raw_data/X_serving_transformed.npy', X_serving_transformed)

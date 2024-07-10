@@ -29,11 +29,11 @@ column_name = dbutils.widgets.get("column_name")
 
 # COMMAND ----------
 
-model = joblib.load(f'classifier-{version}.joblib')
+model = joblib.load(f'model_history/classifier-{version}.joblib')
 
 # COMMAND ----------
 
-serving_df = np.load('X_serving_transformed.npy')
+serving_df = np.load('raw_data/X_serving_transformed.npy')
 
 
 # COMMAND ----------

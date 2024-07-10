@@ -27,13 +27,13 @@ import pandas as pd
 
 # COMMAND ----------
 
-train_df = pd.read_csv('train_df.csv')
+train_df = pd.read_csv('raw_data/train_df.csv')
 train_df = train_df.drop(columns=['Unnamed: 0'])
 train_df = train_df[train_df.Year_Birth>1923]
 
 # COMMAND ----------
 
-eval_df = pd.read_csv('eval_df.csv')
+eval_df = pd.read_csv('raw_data/eval_df.csv')
 eval_df = eval_df.drop(columns=['Unnamed: 0'])
 eval_df = eval_df[eval_df.Year_Birth>1923]
 
@@ -133,34 +133,6 @@ preprocessor = ColumnTransformer(
 
 # COMMAND ----------
 
-def transform(X, y, k=4):
-    # Feature selection
-    selector = SelectKBest(score_func=f_classif, k=k)
-    X_new = selector.fit_transform(X, y)
-    selected_features = selector.get_support(indices=True)
-    X_new_df = pd.DataFrame(X_new, columns=X.columns[selected_features])
-
-    # Standardizing the features
-    scaler = StandardScaler()
-    X_scaled = scaler.fit_transform(X_new_df)
-
-    return pd.DataFrame(X_scaled, columns=X_new_df.columns), selector
-
-
-
-# COMMAND ----------
-
-data = ['Dt_Customer']
-
-# Apply the feature selection and transformation
-X_transformed, selector = transform(X, y, k=2)
-
-# Display the transformed features
-print(X_transformed.head())
-
-
-# COMMAND ----------
-
 # Create the final pipeline
 pipeline = Pipeline(steps=[('preprocessor', preprocessor)])
 
@@ -177,10 +149,10 @@ print("\nTransformed Validation Data:\n", X_eval_transformed)
 # COMMAND ----------
 
 # Save the pipeline
-joblib.dump(pipeline, 'data_preprocessor_pipeline.pkl')
+joblib.dump(pipeline, 'preprocess_pipeline/data_preprocessor_pipeline.pkl')
 
 # Save the transformed datasets
-np.save('X_train_transformed.npy', X_train_transformed)
-np.save('X_val_transformed.npy', X_eval_transformed)
-np.save('y_train.npy', y_train)
-np.save('y_eval.npy', y_eval)
+np.save('raw_data/X_train_transformed.npy', X_train_transformed)
+np.save('raw_data/X_val_transformed.npy', X_eval_transformed)
+np.save('raw_data/y_train.npy', y_train)
+np.save('raw_data/y_eval.npy', y_eval)

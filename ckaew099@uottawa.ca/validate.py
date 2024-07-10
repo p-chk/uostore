@@ -231,10 +231,10 @@ tfdv.display_anomalies(skew_drift_anomalies)
 
 # COMMAND ----------
 
-tfdv.write_schema_text(schema, 'schema.pbtxt')  
+tfdv.write_schema_text(schema, 'schema/schema.pbtxt')  
 
 # COMMAND ----------
 
-train_df.to_csv('train_df.csv')
-eval_df.to_csv('eval_df.csv')
-serving_df.to_csv('serving_df.csv')
+train_df.to_csv('raw_data/train_df.csv')
+eval_df.to_csv('raw_data/eval_df.csv')
+serving_df.to_csv('raw_data/serving_df.csv')

@@ -1,5 +1,4 @@
 # Databricks notebook source
-
 pip install tensorflow-data-validation==1.8.0
 
 # COMMAND ----------
@@ -28,7 +27,7 @@ tf.get_logger().setLevel('ERROR')
 # COMMAND ----------
 
 schema = tfdv.load_schema_text(
-    'schema.pbtxt'
+    'schema/schema.pbtxt'
 ) 
 
 # COMMAND ----------

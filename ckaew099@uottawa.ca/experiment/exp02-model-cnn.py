@@ -54,11 +54,11 @@ warnings.filterwarnings("ignore")
 
 # COMMAND ----------
 
-X_train_transformed_loaded = np.load('X_train_transformed.npy')
-X_val_transformed_loaded = np.load('X_val_transformed.npy')
+X_train_transformed_loaded = np.load('../raw_data/X_train_transformed.npy')
+X_val_transformed_loaded = np.load('../raw_data/X_val_transformed.npy')
 
-y_train = np.load('y_train.npy')
-y_val = np.load('y_eval.npy')
+y_train = np.load('../raw_data/y_train.npy')
+y_val = np.load('../raw_data/y_eval.npy')
 
 # COMMAND ----------
 
